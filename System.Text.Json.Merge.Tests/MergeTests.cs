@@ -50,9 +50,9 @@ public class MergeTests
     [Fact]
     public void MergeArrayIntoArray_Concat()
     {
-        var a = new JsonArray { "1", "2" };
+        var a = new JsonArray { "1", "2", "3" };
         a.Merge(new string[] { "3", "4" }, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Concat });
-        Node.Equal(new JsonArray { "1", "2", "3", "4" }, a);
+        Node.Equal(new JsonArray { "1", "2", "3", "3", "4" }, a);
     }
 
     [Fact]
