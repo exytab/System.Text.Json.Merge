@@ -8,6 +8,15 @@
 
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);HAVE_HASH_SET</DefineConstants>
+	<VersionPrefix>0.0.1</VersionPrefix>
+    <PackageId>Exytab.$(AssemblyName)</PackageId>
+    <Authors>exytab</Authors>
+    <Company />
+    <Product />
+    <RepositoryUrl>https://github.com/exytab/System.Text.Json.Merge</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/exytab/System.Text.Json.Merge</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>
