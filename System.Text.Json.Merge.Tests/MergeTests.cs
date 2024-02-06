@@ -513,6 +513,7 @@ public class MergeTests
   ]
 }", json);
     }
+
     [Fact]
     public void MergeDefaultContainers()
     {
@@ -535,6 +536,32 @@ public class MergeTests
         JsonArray a = new JsonArray();
         a.Merge(null);
         Assert.Empty(a);
+    }
+
+    [Fact]
+    public void MergeNullValue()
+    {
+        var source = new JsonObject
+        {
+            ["Property1"] = "value",
+            ["Property2"] = new JsonObject()
+            ["Property3"] = null,
+            ["Property4"] = null,
+            ["Property5"] = new JsonArray(),
+        };
+
+        var patch = JsonObject.Parse("{\"Property1\": null, \"Property2\": null, \"Property3\": null, \"Property4\": null, \"Property5\": null}");
+
+        source.Merge(patch, new JsonMergeSettings
+        {
+            MergeNullValueHandling = MergeNullValueHandling.Merge
+        });
+
+        Assert.Null(source["Property1"]);
+        Assert.Null(source["Property2"]);
+        Assert.Null(source["Property3"]);
+        Assert.Null(source["Property4"]);
+        Assert.Null(source["Property5"]);
     }
 
     [Fact]
