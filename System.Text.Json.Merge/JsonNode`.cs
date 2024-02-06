@@ -199,6 +199,22 @@ public static class JsonNodeExtensions
         else if (content is KeyValuePair<string, JsonNode?> contentAsKvp)
         {
             JsonNode item = CreateFromContent(contentAsKvp.Value);
+
+            //// don't add comments to JProperty
+            //if (item != null && item.Type == JTokenType.Comment)
+            //{
+            //    return false;
+            //}
+
+            //if (Value != null)
+            //{
+            //    throw new JsonException("{0} cannot have multiple values.".FormatWith(CultureInfo.InvariantCulture, typeof(JProperty)));
+            //}
+
+            //return base.InsertItem(0, item, false, copyAnnotations);
+
+            //return InsertItem(@this, 0, item, false, copyAnnotations);
+
             if (@this is JsonObject o)
             {
                 if (o.ContainsKey(contentAsKvp.Key))
@@ -224,6 +240,9 @@ public static class JsonNodeExtensions
         else
         {
             JsonNode item = CreateFromContent(content);
+
+            //return InsertItem(@this, index, item, skipParentCheck, copyAnnotations);
+
             if (@this is JsonObject o)
             {
                 o.Add(item);
@@ -240,6 +259,58 @@ public static class JsonNodeExtensions
             return true;
         }
     }
+
+    //    internal static bool InsertItem(this JsonNode @this, int index, JsonNode? item, bool skipParentCheck, bool copyAnnotations) // virtual !!
+    //    {
+    //        IList<JsonNode> children = @this.ChildrenTokens();
+
+    //        if (index > children.Count)
+    //        {
+    //            throw new ArgumentOutOfRangeException(nameof(index), "Index must be within the bounds of the List.");
+    //        }
+
+    //        CheckReentrancy();
+
+    //        item = EnsureParentToken(@this, item, skipParentCheck, copyAnnotations);
+
+    //        JsonNode? previous = (index == 0) ? null : children[index - 1];
+    //        // haven't inserted new token yet so next token is still at the inserting index
+    //        JsonNode? next = (index == children.Count) ? null : children[index];
+
+    //        //ValidateToken(item, null); // todo: validate token
+
+    //        item.Parent = @this;
+
+    //        item.Previous = previous;
+    //        if (previous != null)
+    //        {
+    //            previous.Next = item;
+    //        }
+
+    //        item.Next = next;
+    //        if (next != null)
+    //        {
+    //            next.Previous = item;
+    //        }
+
+    //        children.Insert(index, item);
+
+    //#if HAVE_COMPONENT_MODEL
+    //                    if (_listChanged != null)
+    //                    {
+    //                        OnListChanged(new ListChangedEventArgs(ListChangedType.ItemAdded, index));
+    //                    }
+    //#endif
+    //#if HAVE_INOTIFY_COLLECTION_CHANGED
+    //                    if (_collectionChanged != null)
+    //                    {
+    //                        OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, index));
+    //                    }
+    //#endif
+
+    //        return true;
+    //    }
+
     internal static void CheckReentrancy()
     {
 #if (HAVE_COMPONENT_MODEL || HAVE_INOTIFY_COLLECTION_CHANGED)
