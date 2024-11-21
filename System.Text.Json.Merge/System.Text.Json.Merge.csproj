@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+	<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);HAVE_HASH_SET</DefineConstants>
-	<VersionPrefix>0.0.1</VersionPrefix>
+	<VersionPrefix>0.0.2</VersionPrefix>
     <PackageId>Exytab.$(AssemblyName)</PackageId>
     <Authors>exytab</Authors>
     <Company />
